@@ -1,0 +1,49 @@
+.border {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+body {
+    background-color: #1C1E22;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.project {
+    padding: 1px;
+}
+
+.key {
+    font-size: 25px;
+}
+
+.footer {
+    background-color: #0f0f0f;
+    height: 5%;
+    padding-top: 5px;
+}
+
+.github-link {
+    color: #aaaaaa;
+}
+
+.status, .comments {
+    list-style-type: none;
+}
+
+.paging {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h4 {
+    text-align: center;
+}
+
+.jumbotron .container {
+    height: 100%;
+}
