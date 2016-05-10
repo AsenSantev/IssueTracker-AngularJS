@@ -32,7 +32,7 @@ angular.module('issueTracker.services.authentication', [])
             function login(user) {
                 var deferred = $q.defer();
 
-                var req = {
+                var request = {
                     method: 'POST',
                     url: baseUrl + 'api/Token',
                     headers: {
@@ -41,7 +41,7 @@ angular.module('issueTracker.services.authentication', [])
                     data: "grant_type=password&username=" + user.username + "&password=" + user.password
                 };
 
-                $http(req)
+                $http(request)
                     .then(function success(response) {
                         var userData = response.data;
 
@@ -72,7 +72,7 @@ angular.module('issueTracker.services.authentication', [])
                 var deferred = $q.defer(),
                     currentUser = getUser();
 
-                var req = {
+                var request = {
                     method: 'POST',
                     url: baseUrl + 'api/Account/Logout',
                     headers: {
@@ -80,7 +80,7 @@ angular.module('issueTracker.services.authentication', [])
                     }
                 };
 
-                $http(req)
+                $http(request)
                     .then(function success() {
                         deferred.resolve();
                     }, function error(err) {
@@ -104,7 +104,7 @@ angular.module('issueTracker.services.authentication', [])
                         '&NewPassword=' + user.newPassword +
                         '&ConfirmPassword=' + user.newPasswordConfirm;
 
-                var req = {
+                var request = {
                     method: 'POST',
                     url: baseUrl + 'api/Account/ChangePassword',
                     data: data,
@@ -114,7 +114,7 @@ angular.module('issueTracker.services.authentication', [])
                     }
                 };
 
-                $http(req)
+                $http(request)
                     .then(function success() {
                         deferred.resolve()
                     }, function error(err) {
@@ -130,9 +130,11 @@ angular.module('issueTracker.services.authentication', [])
                 logoutUser: logout,
                 getCurrentUser: getUser,
                 changePassword: changePassword,
+
                 isAuthenticated: function() {
                     return sessionStorage['currentUser'] != undefined;
                 },
+
                 isAdmin: function() {
                     var currentUser = getUser();
                     return (currentUser != undefined) && (currentUser.isAdmin);

@@ -12,8 +12,10 @@ angular.module('issueTracker.services.notifier', [])
                         timeout: 1000}
                     );
                 },
+
                 showError: function(msg, serverError) {
                     var errors = [];
+
                     if (serverError && serverError.data.error_description) {
                         errors.push(serverError.data.error_description);
                     }
@@ -27,8 +29,8 @@ angular.module('issueTracker.services.notifier', [])
 
                         for (var propertyName in modelStateErrors) {
                             var errorMessages = modelStateErrors[propertyName];
-                            var trimmedName =
-                                propertyName.substr(propertyName.indexOf('.') + 1);
+                            var trimmedName = propertyName.substr(propertyName.indexOf('.') + 1);
+
                             for (var i = 0; i < errorMessages.length; i++) {
                                 var currentError = errorMessages[i];
                                 errors.push(trimmedName + ' - ' + currentError);

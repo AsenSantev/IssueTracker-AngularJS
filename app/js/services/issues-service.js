@@ -64,7 +64,7 @@ angular.module('issueTracker.services.issues', [])
                     '&PriorityId=' + issue.PriorityId +
                     dataLabels;
 
-            var req = {
+            var request = {
                 method: 'PUT',
                 url: baseUrl + 'issues/' + id,
                 headers: {
@@ -74,7 +74,7 @@ angular.module('issueTracker.services.issues', [])
                 data: data
             };
 
-            $http(req)
+            $http(request)
                 .then(function success(response) {
                     deferred.resolve(response.data);
                 }, function error(err) {
@@ -88,7 +88,7 @@ angular.module('issueTracker.services.issues', [])
         function changeStatus(issueId, statusId) {
             var deferred = $q.defer();
 
-            var req = {
+            var request = {
                 method: 'PUT',
                 url: baseUrl + 'issues/' + issueId + '/changestatus?statusid=' + statusId,
                 headers: {
@@ -96,7 +96,7 @@ angular.module('issueTracker.services.issues', [])
                 }
             };
 
-            $http(req)
+            $http(request)
                 .then(function success(response) {
                     deferred.resolve(response);
                 }, function error() {

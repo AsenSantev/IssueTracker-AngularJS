@@ -92,11 +92,7 @@ angular.module('issueTracker.controllers.projects', [])
                 .then(function success(data) {
                     $scope.currentProject = data;
 
-                    if(data.Lead.Id === JSON.parse(sessionStorage['currentUser']).Id) {
-                        $scope.isLeadOfProject = true;
-                    }else {
-                        $scope.isLeadOfProject = false;
-                    }
+                    $scope.isLeadOfProject = data.Lead.Id === JSON.parse(sessionStorage['currentUser']).Id;
 
                     $scope.currentProjectLabels = [];
                     $scope.currentProjectPriorities = [];

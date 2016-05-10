@@ -40,7 +40,7 @@ angular.module('issueTracker', [
                     if(nextRoute.access.requiresAdmin && !authentication.isAdmin()) {
                         $location.path('/');
                     }
-                }else {
+                } else {
                     $location.path('/');
                 }
             });

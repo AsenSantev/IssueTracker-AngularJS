@@ -9,7 +9,7 @@ angular.module('issueTracker.services.projects', [])
 
             function getAllProjects(params) {
                 var deferred = $q.defer(),
-                    projectsReq = {
+                    projectsRequest = {
                         method: 'GET',
                         url: baseUrl + 'projects?filter=&pageSize=' + params.pageSize + '&pageNumber=' + params.pageNumber,
                         headers: {
@@ -17,7 +17,7 @@ angular.module('issueTracker.services.projects', [])
                         }
                     };
 
-                $http(projectsReq)
+                $http(projectsRequest)
                     .then(function success(response) {
                         deferred.resolve(response.data);
                     }, function error(err) {
@@ -32,12 +32,14 @@ angular.module('issueTracker.services.projects', [])
 
                 var labels = project.labels.split(',');
                 var dataLabels = '';
+
                 labels.forEach(function(l, index) {
                     dataLabels += '&labels[' + index + '].Name=' + l.trim();
                 });
 
                 var priorities = project.priorities.split(',');
                 var dataPriorities = '';
+
                 priorities.forEach(function(p, index) {
                     dataPriorities += '&priorities[' + index + '].Name=' + p.trim();
                 });
@@ -48,7 +50,7 @@ angular.module('issueTracker.services.projects', [])
                         dataLabels + dataPriorities +
                         '&LeadId=' + project.leadId;
 
-                var req = {
+                var request = {
                     method: 'POST',
                     url: baseUrl + 'projects',
                     headers: {
@@ -58,7 +60,7 @@ angular.module('issueTracker.services.projects', [])
                     data: data
                 };
 
-                $http(req)
+                $http(request)
                     .then(function success(response) {
                         deferred.resolve(response.data);
                     }, function error(err) {
@@ -70,7 +72,7 @@ angular.module('issueTracker.services.projects', [])
 
             function getProjectById(projectId) {
                 var deferred = $q.defer(),
-                    projectReq = {
+                    projectRequest = {
                         method: 'GET',
                         url: baseUrl + 'projects/' + projectId,
                         headers: {
@@ -78,7 +80,7 @@ angular.module('issueTracker.services.projects', [])
                         }
                     };
 
-                $http(projectReq)
+                $http(projectRequest)
                     .then(function success(response) {
                         deferred.resolve(response.data);
                     }, function error(err) {
@@ -90,7 +92,7 @@ angular.module('issueTracker.services.projects', [])
 
             function getIssuesByProjectId(projectId) {
                 var deferred = $q.defer(),
-                    issuesReq = {
+                    issuesRequest = {
                         method: 'GET',
                         url: baseUrl + 'projects/' + projectId + '/issues',
                         headers: {
@@ -98,7 +100,7 @@ angular.module('issueTracker.services.projects', [])
                         }
                     };
 
-                $http(issuesReq)
+                $http(issuesRequest)
                     .then(function success(response) {
                         deferred.resolve(response.data);
                     }, function error(err) {
@@ -112,11 +114,13 @@ angular.module('issueTracker.services.projects', [])
                 var deferred = $q.defer();
 
                 var dataLabels = '';
+
                 project.Labels.forEach(function(l, index) {
                     dataLabels += '&labels[' + index + '].Name=' + l.trim();
                 });
 
                 var dataPriorities = '';
+
                 project.Priorities.forEach(function(p, index) {
                     dataPriorities += '&priorities[' + index + '].Name=' + p.trim();
                 });
@@ -126,7 +130,7 @@ angular.module('issueTracker.services.projects', [])
                     dataLabels + dataPriorities +
                     '&LeadId=' + project.LeadId;
 
-                var req = {
+                var request = {
                     method: 'PUT',
                     url: baseUrl + 'projects/' + id,
                     headers: {
@@ -136,7 +140,7 @@ angular.module('issueTracker.services.projects', [])
                     data: data
                 };
 
-                $http(req)
+                $http(request)
                     .then(function success(response) {
                         deferred.resolve(response.data);
                     }, function error(err) {
@@ -162,7 +166,7 @@ angular.module('issueTracker.services.projects', [])
                         '&PriorityId=' + issue.PriorityId +
                         dataLabels;
 
-                var req = {
+                var request = {
                     method: 'POST',
                     url: baseUrl + 'issues/',
                     headers: {
@@ -172,7 +176,7 @@ angular.module('issueTracker.services.projects', [])
                     data: data
                 };
 
-                $http(req)
+                $http(request)
                     .then(function success(response) {
                         deferred.resolve(response.data);
                     }, function error(err) {
@@ -186,7 +190,7 @@ angular.module('issueTracker.services.projects', [])
                 var leadId = JSON.parse(sessionStorage['currentUser']).Id;
                 var deferred = $q.defer();
 
-                var projectsReq = {
+                var projectsRequest = {
                     method: 'GET',
                     url: baseUrl + 'projects?filter=Lead.Id="' + leadId +'"&pageSize=' + params.pageSize + '&pageNumber=' + params.pageNumber,
                     headers: {
@@ -194,7 +198,7 @@ angular.module('issueTracker.services.projects', [])
                     }
                 };
 
-                $http(projectsReq)
+                $http(projectsRequest)
                     .then(function success(response) {
                         deferred.resolve(response.data);
                     }, function error(err) {

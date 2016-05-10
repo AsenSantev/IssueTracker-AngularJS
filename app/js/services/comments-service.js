@@ -5,7 +5,7 @@ angular.module('issueTracker.services.comments', [])
         function getIssueComments(id) {
             var deferred = $q.defer();
 
-            var req = {
+            var request = {
                 method: 'GET',
                 url: baseUrl + 'issues/' + id + '/comments',
                 headers: {
@@ -13,7 +13,7 @@ angular.module('issueTracker.services.comments', [])
                 }
             };
 
-            $http(req)
+            $http(request)
                 .then(function success(response) {
                     deferred.resolve(response.data);
                 }, function error(err) {
@@ -26,7 +26,7 @@ angular.module('issueTracker.services.comments', [])
         function addCommentToIssue(issueId, comment) {
             var deferred = $q.defer();
 
-            var req = {
+            var request = {
                 method: 'POST',
                 url: baseUrl + 'issues/' + issueId + '/comments',
                 headers: {
@@ -35,7 +35,7 @@ angular.module('issueTracker.services.comments', [])
                 data: comment
             };
 
-            $http(req)
+            $http(request)
                 .then(function success(response) {
                     deferred.resolve(response.data);
                 }, function error(err) {
